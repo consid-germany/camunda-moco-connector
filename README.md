@@ -2,7 +2,7 @@
 
 A connector to talk to the MOCO App API. MOCO is a lightweight ERP software. Check out https://www.mocoapp.com
 
-<p align="center">
+<p align="center" style="margin: 50px">
   <img src="example.png" width="750" alt="Example process with the Moco connector"/>
 </p>
 
