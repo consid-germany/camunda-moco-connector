@@ -83,7 +83,7 @@
     },
     {
       "label": "Employee ID",
-      "description": "The id of the user in MOCO",
+      "description": "The numerical id of the user in MOCO",
       "group": "operation",
       "type": "String",
       "feel": "optional",
@@ -92,12 +92,7 @@
         "name": "employeeId"
       },
       "constraints": {
-        "notEmpty": true,
-        "pattern": {
-          "value": "\\d+",
-          "message": "must be a number"
-        },
-        "maxLength": 10
+        "notEmpty": true
       },
       "condition": {
         "property": "operation",
@@ -108,7 +103,7 @@
     },
     {
       "label": "Date of absence",
-      "description": "When does the absence occur?",
+      "description": "When the absence occurs, in format: YYYY-MM-DD",
       "group": "operation",
       "type": "String",
       "feel": "optional",
@@ -117,12 +112,7 @@
         "name": "absenceDate"
       },
       "constraints": {
-        "notEmpty": true,
-        "pattern": {
-          "value": "^\\d{4}-\\d{2}-\\d{2}$",
-          "message": "must be a valid date string, e.g. 2024-12-21"
-        },
-        "maxLength": 10
+        "notEmpty": true
       },
       "condition": {
         "property": "operation",
@@ -283,7 +273,7 @@
     },
     {
       "type": "Hidden",
-      "value": "={ \"user_id\": employeeId, \"date\": absenceStart, \"absence_code\": absenceMode, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto generated sick leave by the Camunda Moco Connector\" }",
+      "value": "={ \"user_id\": employeeId, \"date\": absenceDate, \"absence_code\": absenceMode, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto-generated absence by the Camunda Moco Connector\" }",
       "binding": {
         "type": "zeebe:input",
         "name": "body"
