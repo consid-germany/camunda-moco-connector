@@ -30,7 +30,7 @@ NOTE: I am **not** a developer working for Moco, if you have any requests about 
 | Absence Type    | The different types of absences supported by Moco                                                                                   | <Dropdown Value> |
 | Absence Mode    | This means if the absence is for half the day or the full day                                                                       | <Dropdown Value> |
 
-## Local Tests
+## 🏠 Local Tests
 
 I use the local Camunda stack together with mountebank to test my connector:
 
