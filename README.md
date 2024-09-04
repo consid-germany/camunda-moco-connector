@@ -38,6 +38,7 @@ I use the local Camunda stack together with mountebank to test my connector:
 * [setup mountebank](mountebank/README.md)
 * copy the content of the element template folder into a `.camunda/element-templates` folder in your repository root
   * this way the Desktop Modeler picks it up if you put the process model right next to it, and you can use the connector from there
+  * See the [documentation from Camunda for more info](https://docs.camunda.io/docs/components/modeler/desktop-modeler/element-templates/configuring-templates/)
 * configure the connector
 * NOTE: currently it is **not possible** for the REST connector to reach mountebank under `http://localhost:4545/api/v1` 
 so you need to replace _localhost_ with your local IP address for now
