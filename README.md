@@ -6,6 +6,8 @@ The connector is based on Camunda OOTB REST connector. Features will be added on
 
 NOTE: I am **not** a developer working for Moco, if you have any requests about the API you need to reach out to the developers.
 
+![](example.png)
+
 ## ✅ Features
 | Category  | Name            | Description                                                  | API Reference                                                                                  | 
 |-----------|-----------------|--------------------------------------------------------------|------------------------------------------------------------------------------------------------|
