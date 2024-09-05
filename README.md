@@ -19,10 +19,10 @@ NOTE: I am **not** a developer working for Moco, if you have any requests about 
 ## ⚙️ Configuration
 
 ### 📍 General
-| Name            | Description                                                                                  | Example                              |
-|-----------------|----------------------------------------------------------------------------------------------|--------------------------------------|
-| Moco API Url    | The specific endpoint for your company                                                       | http://my-company.mocoapp.com/api/v1 |
-| Moco API Key    | The reference to your API key for your company. Keep your secrets in the secret store.       | {{ secrets.MOCO_API_KEY}}            | 
+| Name            | Description                                                                                | Example                                |
+|-----------------|--------------------------------------------------------------------------------------------|----------------------------------------|
+| Moco API Url    | The specific endpoint for your company                                                     | `http://my-company.mocoapp.com/api/v1` |
+| Moco API Key    | The reference to your API key for your company. Keep your secrets in the secret store.     | `{{ secrets.MOCO_API_KEY}}`            | 
 
 ### 📆 Schedules
 
@@ -31,9 +31,17 @@ NOTE: I am **not** a developer working for Moco, if you have any requests about 
 | Name            | Description                                                                                                      | Example          |
 |-----------------|------------------------------------------------------------------------------------------------------------------|------------------|
 | Employee ID     | The id of the employee in Moco. You should set this as input variable for your process.                          | `=employeeId`    |
-| Date of Absence | The ISO-8601 formatted string for the date. This should also be an input variable.                               | `=absenceDate`   |
+| Date of Absence | The ISO-8601 formatted string for the date. This should be an input variable.                                    | `=absenceDate`   |
 | Absence Type    | The different types of absences supported by Moco                                                                | <Dropdown Value> |
-| Absence Mode    | This means if the absence is for half the day or the full day                                                    | <Dropdown Value> |
+| Absence Mode    | Is the absence for half the day or the full day                                                                  | <Dropdown Value> |
+
+## 💡 Planned Features
+
+Here I will try to create a roadmap for the next features I want to add. Feel free to reach out if you hae any suggestions
+
+| Category | Name             | Description                                                                      | API Reference                                                                            |
+|----------|------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| Users    | Deactivate User  | During offboarding it is necessary to deactivate a user, instead of a deletion.  | [Link](https://hundertzehn.github.io/mocoapp-api-docs/sections/users.html#put-usersid)   |
 
 ## 🏠 Local Tests
 
