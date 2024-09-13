@@ -85,7 +85,7 @@
       "label": "Employee ID",
       "description": "The numerical id of the user in MOCO",
       "group": "operation",
-      "type": "String",
+      "type": "Number",
       "feel": "optional",
       "binding": {
         "type": "zeebe:input",
@@ -273,7 +273,7 @@
     },
     {
       "type": "Hidden",
-      "value": "={ \"user_id\": employeeId, \"date\": absenceDate, \"absence_code\": absenceMode, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto-generated absence by the Camunda Moco Connector\" }",
+      "value": "={ \"user_id\": employeeId, \"date\": absenceDate, \"absence_code\": absenceType, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto-generated absence by the Camunda Moco Connector\" }",
       "binding": {
         "type": "zeebe:input",
         "name": "body"

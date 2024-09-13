@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1x1tibn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.26.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
-  <bpmn:process id="Process_0l796p7" isExecutable="true">
+  <bpmn:process id="example" name="Example" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="employee calls in sick">
       <bpmn:outgoing>Flow_19jpuib</bpmn:outgoing>
     </bpmn:startEvent>
@@ -13,10 +13,10 @@
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="io.camunda:http-json:1" />
         <zeebe:ioMapping>
-          <zeebe:input source="http://localhost:4545/api/v1" target="baseUrl" />
-          <zeebe:input source="{{ secrets.MOCO_API_KEY }}" target="mocoApiKey" />
+          <zeebe:input source="=baseUrl" target="baseUrl" />
+          <zeebe:input source="=apiKey" target="mocoApiKey" />
           <zeebe:input source="createAbsence" target="operation" />
-          <zeebe:input source="=employeeId" target="employeeId" />
+          <zeebe:input source="=employeeMocoId" target="employeeId" />
           <zeebe:input source="=dateOfAbsence" target="absenceDate" />
           <zeebe:input source="3" target="absenceType" />
           <zeebe:input source="0" target="absenceMode" />
@@ -28,13 +28,13 @@
           <zeebe:input source="schedules" target="operationEntity" />
           <zeebe:input source="=absenceMode=&#34;0&#34; or absenceMode=&#34;1&#34;" target="absenceMorning" />
           <zeebe:input source="=absenceMode=&#34;0&#34; or absenceMode=&#34;2&#34;" target="absenceAfternoon" />
-          <zeebe:input source="={ &#34;user_id&#34;: employeeId, &#34;date&#34;: absenceDate, &#34;absence_code&#34;: absenceMode, &#34;am&#34;: absenceMorning, &#34;pm&#34;: absenceAfternoon, &#34;comment&#34;: &#34;Auto-generated absence by the Camunda Moco Connector&#34; }" target="body" />
+          <zeebe:input source="={ &#34;user_id&#34;: employeeId, &#34;date&#34;: absenceDate, &#34;absence_code&#34;: absenceType, &#34;am&#34;: absenceMorning, &#34;pm&#34;: absenceAfternoon, &#34;comment&#34;: &#34;Auto-generated absence by the Camunda Moco Connector&#34; }" target="body" />
           <zeebe:input source="POST" target="method" />
           <zeebe:input source="=baseUrl + &#34;/&#34; + operationEntity" target="url" />
           <zeebe:input source="10" target="connectionTimeoutInSeconds" />
         </zeebe:ioMapping>
         <zeebe:taskHeaders>
-          <zeebe:header key="resultVariable" value="result" />
+          <zeebe:header key="resultExpression" value="={ scheduleId: response.body.id }" />
         </zeebe:taskHeaders>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_19jpuib</bpmn:incoming>
@@ -48,22 +48,22 @@
   </bpmn:process>
   <bpmn:error id="Error_1729c1i" name="Unauthorized" errorCode="404" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0l796p7">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="example">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="155" y="142" width="85" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0p5ki8c_di" bpmnElement="Activity_0a5u7sn">
-        <dc:Bounds x="270" y="77" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1xmeacb_di" bpmnElement="Event_1xmeacb">
         <dc:Bounds x="592" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="569" y="142" width="82" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p5ki8c_di" bpmnElement="Activity_0a5u7sn">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ceaybr_di" bpmnElement="Activity_0ceaybr">
         <dc:Bounds x="420" y="77" width="100" height="80" />

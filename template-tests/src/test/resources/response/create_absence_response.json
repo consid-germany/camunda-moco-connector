@@ -1,0 +1,23 @@
+{
+  "id": 1234567890,
+  "date": "2024-01-01",
+  "comment": "Auto-generated absence by the Camunda Moco Connector",
+  "am": true,
+  "pm": true,
+  "symbol": null,
+  "assignment": {
+    "id": 1234567890,
+    "name": "Krankheit",
+    "code": "3",
+    "customer_name": "My Company",
+    "color": "#CCC",
+    "type": "Absence"
+  },
+  "user": {
+    "id": 123456,
+    "firstname": "Max",
+    "lastname": "Mustermann"
+  },
+  "created_at": "2024-09-11T17:50:59Z",
+  "updated_at": "2024-09-11T17:51:01Z"
+}

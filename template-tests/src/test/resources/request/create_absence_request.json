@@ -1,0 +1,8 @@
+{
+  "pm": true,
+  "am": true,
+  "user_id": 123456,
+  "date": "2024-01-01",
+  "comment": "Auto-generated absence by the Camunda Moco Connector",
+  "absence_code": "3"
+}
