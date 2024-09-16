@@ -25,6 +25,7 @@
 
     <dependencies>
 
+        <!-- fix inconsistencies between versions -->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-api</artifactId>
@@ -47,15 +48,16 @@
         </dependency>
 
         <dependency>
-            <groupId>io.camunda.connector</groupId>
-            <artifactId>connector-http-json</artifactId>
+            <groupId>io.camunda.spring</groupId>
+            <artifactId>spring-boot-starter-camunda-test</artifactId>
             <version>${zeebe.version}</version>
             <scope>test</scope>
         </dependency>
 
+        <!-- the camunda rest connector we want to use for testsing -->
         <dependency>
-            <groupId>io.camunda</groupId>
-            <artifactId>spring-zeebe-test</artifactId>
+            <groupId>io.camunda.connector</groupId>
+            <artifactId>connector-http-json</artifactId>
             <version>${zeebe.version}</version>
             <scope>test</scope>
         </dependency>
