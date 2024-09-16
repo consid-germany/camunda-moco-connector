@@ -21,8 +21,5 @@ jobs:
         cache: maven
         cache-dependency-path: 'template-tests/pom.xml'
     - name: Build with Maven
-      run: mvn -B test --file template-tests/pom.xml
-    - name: Show test logs on failure
-      if: failure()
-      run: cat template-tests/target/surefire-reports/*.xml
+      run: mvn test --file template-tests/pom.xml
 
