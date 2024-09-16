@@ -30,4 +30,4 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B package --file template-tests/pom.xml
+      run: mvn -B -X package --file template-tests/pom.xml
