@@ -21,4 +21,4 @@ jobs:
         cache: maven
         cache-dependency-path: 'template-tests/pom.xml'
     - name: Build with Maven
-      run: mvn -B package --file template-tests/pom.xml
+      run: mvn -B test --file template-tests/pom.xml
