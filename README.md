@@ -1,6 +1,6 @@
 # The Camunda Moco Connector
 
-[![Maven Package](https://github.com/itsmestefanjay/camunda-moco-connector/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/itsmestefanjay/camunda-moco-connector/actions/workflows/maven-publish.yml)
+[![Maven Package](https://github.com/itsmestefanjay/camunda-moco-connector/actions/workflows/maven-build.yml/badge.svg)](https://github.com/itsmestefanjay/camunda-moco-connector/actions/workflows/maven-build.yml)
 
 A connector to talk to the MOCO App API. MOCO is a lightweight ERP software. Check out https://www.mocoapp.com
 
