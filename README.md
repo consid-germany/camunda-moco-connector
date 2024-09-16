@@ -2,9 +2,11 @@
 
 A connector to talk to the MOCO App API. MOCO is a lightweight ERP software. Check out https://www.mocoapp.com
 
+<p></p>
 <p align="center" style="margin: 50px">
-  <img src="example.png" width="750" alt="Example process with the Moco connector"/>
+  <img src="example.png" width="500" alt="Example process with the Moco connector"/>
 </p>
+<p></p>
 
 The connector is based on Camunda's out of the box REST connector. Features will be added one by one, if you need anything reach out to me.
 
