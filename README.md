@@ -10,7 +10,7 @@ A connector to talk to the MOCO App API. MOCO is a lightweight ERP software. Che
 </p>
 <p></p>
 
-The connector is based on Camunda's out of the box REST connector. Features will be added one by one, if you need anything reach out to me.
+The connector is based on Camunda's out of the box REST connector (v8.5+). Features will be added one by one, if you need anything reach out to me.
 
 NOTE: I am **not** a developer working for Moco, if you have any requests about the API you need to reach out to the developers.
 
@@ -47,6 +47,7 @@ Here I will try to create a roadmap for the next features I want to add. Feel fr
 |----------|------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | Users    | Deactivate User  | During offboarding it is necessary to deactivate a user, instead of a deletion.  | [Link](https://hundertzehn.github.io/mocoapp-api-docs/sections/users.html#put-usersid)   |
 
+
 ## 🏠 Local Tests
 
 I use the local Camunda stack together with Wiremock to test my template:
@@ -57,7 +58,7 @@ I use the local Camunda stack together with Wiremock to test my template:
 * Camunda Starter Test for the in-memory Zeebe engine
 
 <p align="center" style="margin: 50px">
-  <img src="test_setup.png" width="600" alt="Test setup"/>
+  <img src="test_setup.png" width="500" alt="Test setup"/>
 </p>
 
 ## 📬 Contact
