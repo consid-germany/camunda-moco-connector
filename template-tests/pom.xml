@@ -17,10 +17,10 @@
         <version.mockito>5.11.0</version.mockito>
         <version.slf4j>2.0.12</version.slf4j>
         <wiremock.version>3.9.1</wiremock.version>
-        <log4j-api.version>2.23.1</log4j-api.version>
+        <log4j-api.version>2.24.0</log4j-api.version>
         <zeebe.version>8.5.5</zeebe.version>
         <grpc-api.version>1.66.0</grpc-api.version>
-        <spring-boot.version>3.2.5</spring-boot.version>
+        <spring-boot.version>3.3.3</spring-boot.version>
     </properties>
 
     <dependencies>
