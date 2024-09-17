@@ -57,7 +57,7 @@ I use the local Camunda stack together with Wiremock to test my template:
 * Camunda Starter Test for the in-memory Zeebe engine
 
 <p align="center" style="margin: 50px">
-  <img src="testsetup.png" width="500" alt="Test setup"/>
+  <img src="test_setup.png" width="600" alt="Test setup"/>
 </p>
 
 ## 📬 Contact
