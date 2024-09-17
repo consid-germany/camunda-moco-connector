@@ -19,7 +19,7 @@
         <wiremock.version>3.9.1</wiremock.version>
         <log4j-api.version>2.23.1</log4j-api.version>
         <zeebe.version>8.5.5</zeebe.version>
-        <grpc-api.version>1.62.2</grpc-api.version>
+        <grpc-api.version>1.66.0</grpc-api.version>
         <spring-boot.version>3.2.5</spring-boot.version>
     </properties>
 
