@@ -20,7 +20,7 @@
         <log4j-api.version>2.24.0</log4j-api.version>
         <zeebe.version>8.5.5</zeebe.version>
         <grpc-api.version>1.62.2</grpc-api.version>
-        <spring-boot.version>3.2.5</spring-boot.version>
+        <spring-boot.version>3.3.3</spring-boot.version>
     </properties>
 
     <dependencies>
