@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
-  "name": "MOCO Connector",
+  "name": "Moco Connector",
   "description": "A connector to talk to the mocoapp.com REST API to manage entities.",
   "id": "5c5f7644-d1fc-4392-9786-00ab6559b423",
   "version": 1,
