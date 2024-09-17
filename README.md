@@ -46,6 +46,7 @@ Here I will try to create a roadmap for the next features I want to add. Feel fr
 | Category | Name             | Description                                                                      | API Reference                                                                            |
 |----------|------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | Users    | Deactivate User  | During offboarding it is necessary to deactivate a user, instead of a deletion.  | [Link](https://hundertzehn.github.io/mocoapp-api-docs/sections/users.html#put-usersid)   |
+| Users    | Create User      | During onboarding it is necessary to create a user.                              | [Link](https://hundertzehn.github.io/mocoapp-api-docs/sections/users.html#post-users)    |
 
 
 ## 🏠 Local Tests
