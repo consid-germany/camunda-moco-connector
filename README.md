@@ -49,17 +49,16 @@ Here I will try to create a roadmap for the next features I want to add. Feel fr
 
 ## 🏠 Local Tests
 
-I use the local Camunda stack together with mountebank to test my connector:
+I use the local Camunda stack together with Wiremock to test my template:
 
-* start the docker-compose file
-* [setup mountebank](mountebank/README.md)
-* copy the content of the element template folder into a `.camunda/element-templates` folder in your repository root
-  * this way the Desktop Modeler picks it up if you put the process model right next to it, and you can use the connector from there
-  * See the [documentation from Camunda for more info](https://docs.camunda.io/docs/components/modeler/desktop-modeler/element-templates/configuring-templates/)
-* configure the connector
-* start an instance of the test process -> Mountebank will deliver an answer and your process goes through
-* NOTE: currently it is **not possible** for the REST connector to reach mountebank under `http://localhost:4545/api/v1` 
-so you need to replace _localhost_ with your local IP address for now
+* Camunda Connector Runtime
+* Camunda REST Connector
+* Wiremock to simulate the Moco Rest API
+* Camunda Starter Test for the in-memory Zeebe engine
+
+<p align="center" style="margin: 50px">
+  <img src="testsetup.png" width="500" alt="Test setup"/>
+</p>
 
 ## 📬 Contact
 
