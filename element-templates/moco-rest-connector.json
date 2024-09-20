@@ -72,13 +72,81 @@
       "type": "Dropdown",
       "choices": [
         {
+          "name": "Create User",
+          "value": "createUser"
+        },
+        {
           "name": "Create Absence",
           "value": "createAbsence"
+        },
+        {
+          "name": "Deactivate User",
+          "value": "deactivateUser"
         }
       ],
       "binding": {
         "type": "zeebe:input",
         "name": "operation"
+      }
+    },
+    {
+      "label": "Employee Firstname(s)",
+      "description": "Firstname(s) of the employee",
+      "group": "operation",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "employeeFirstName"
+      },
+      "constraints": {
+        "notEmpty": true
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "createUser"
+        ]
+      }
+    },
+    {
+      "label": "Employee Lastname",
+      "description": "Lastname of the employee",
+      "group": "operation",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "employeeLastName"
+      },
+      "constraints": {
+        "notEmpty": true
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "createUser"
+        ]
+      }
+    },
+    {
+      "label": "Employee E-Mail",
+      "description": "Company e-mail address of the employee",
+      "group": "operation",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "employeeMailAddress"
+      },
+      "constraints": {
+        "notEmpty": true
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "createUser"
+        ]
       }
     },
     {
@@ -89,7 +157,7 @@
       "feel": "optional",
       "binding": {
         "type": "zeebe:input",
-        "name": "employeeId"
+        "name": "entityId"
       },
       "constraints": {
         "notEmpty": true
@@ -97,7 +165,28 @@
       "condition": {
         "property": "operation",
         "oneOf": [
-          "createAbsence"
+          "createAbsence",
+          "deactivateUser"
+        ]
+      }
+    },
+    {
+      "label": "Team ID",
+      "description": "The numerical id of the team in MOCO",
+      "group": "operation",
+      "type": "Number",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "teamId"
+      },
+      "constraints": {
+        "notEmpty": true
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "createUser"
         ]
       }
     },
@@ -245,6 +334,21 @@
     },
     {
       "type": "Hidden",
+      "value": "users",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "operationEntity"
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "deactivateUser",
+          "createUser"
+        ]
+      }
+    },
+    {
+      "type": "Hidden",
       "value": "=absenceMode=\"0\" or absenceMode=\"1\"",
       "binding": {
         "type": "zeebe:input",
@@ -273,7 +377,7 @@
     },
     {
       "type": "Hidden",
-      "value": "={ \"user_id\": employeeId, \"date\": absenceDate, \"absence_code\": absenceType, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto-generated absence by the Camunda Moco Connector\" }",
+      "value": "={ \"user_id\": entityId, \"date\": absenceDate, \"absence_code\": absenceType, \"am\": absenceMorning, \"pm\": absenceAfternoon, \"comment\": \"Auto-generated absence by the Camunda Moco Connector\" }",
       "binding": {
         "type": "zeebe:input",
         "name": "body"
@@ -287,6 +391,34 @@
     },
     {
       "type": "Hidden",
+      "value": "={ \"active\": false }",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "body"
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "deactivateUser"
+        ]
+      }
+    },
+    {
+      "type": "Hidden",
+      "value": "={ \"firstname\": employeeFirstName, \"lastname\": employeeLastName, \"unit_id\": teamId, \"email\": employeeMailAddress, \"language\": \"de\", \"active\": true, \"external\": false }",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "body"
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "createUser"
+        ]
+      }
+    },
+    {
+      "type": "Hidden",
       "value": "POST",
       "binding": {
         "type": "zeebe:input",
@@ -295,7 +427,22 @@
       "condition": {
         "property": "operation",
         "oneOf": [
-          "createAbsence"
+          "createAbsence",
+          "createUser"
+        ]
+      }
+    },
+    {
+      "type": "Hidden",
+      "value": "PUT",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "method"
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "deactivateUser"
         ]
       }
     },
@@ -309,7 +456,22 @@
       "condition": {
         "property": "operation",
         "oneOf": [
-          "createAbsence"
+          "createAbsence",
+          "createUser"
+        ]
+      }
+    },
+    {
+      "type": "Hidden",
+      "value": "=baseUrl + \"/\" + operationEntity + \"/\" + string(entityId)",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "url"
+      },
+      "condition": {
+        "property": "operation",
+        "oneOf": [
+          "deactivateUser"
         ]
       }
     },

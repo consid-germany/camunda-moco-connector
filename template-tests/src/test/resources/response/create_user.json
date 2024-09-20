@@ -1,0 +1,14 @@
+{
+  "id": 123,
+  "firstname": "Sarah",
+  "lastname": "Parker",
+  "active": true,
+  "extern": false,
+  "email": "sarah.parker@example.com",
+  "unit": {
+    "id": 1,
+    "name": "Abteilung"
+  },
+  "created_at": "2024-10-17T09:33:46Z",
+  "updated_at": "2024-10-17T09:33:46Z"
+}
