@@ -19,7 +19,11 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.absent;
+import static com.github.tomakehurst.wiremock.client.WireMock.not;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.unauthorized;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static io.camunda.zeebe.process.test.assertions.BpmnAssert.assertThat;
 import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.waitForProcessInstanceCompleted;
@@ -27,7 +31,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @SpringBootTest
 @ZeebeSpringTest
-public class ScheduleEndpointTest {
+public class AuthorizationTest {
 
     public static final String VALID_API_TOKEN = "abcdef";
 
@@ -42,46 +46,43 @@ public class ScheduleEndpointTest {
             .build();
 
     @BeforeEach
-    public void setup() throws IOException {
+    public void setup() {
         baseUrl = extension.baseUrl();
         WireMock wireMock = extension.getRuntimeInfo().getWireMock();
 
-        String requestJson = new ClassPathResource("request/create_absence.json")
-                .getContentAsString(UTF_8);
+        MappingBuilder unauthorized = WireMock.post(urlPathMatching(".*"))
+                .withHeader("Authorization", absent())
+                .withHeader("Authorization", not(new EqualToPattern("Token token=" + VALID_API_TOKEN)))
+                .willReturn(unauthorized());
 
-        String responseJson = new ClassPathResource("response/create_absence.json")
-                .getContentAsString(UTF_8);
-
-        MappingBuilder happyPath = WireMock.post("/schedules")
-                .withHeader("Authorization", new EqualToPattern("Token token=" + VALID_API_TOKEN))
-                .withHeader("Content-Type", new EqualToPattern("application/json"))
-                .withRequestBody(new EqualToJsonPattern(requestJson, true, false))
-                .willReturn(okJson(responseJson));
-
-        wireMock.register(happyPath);
+        wireMock.register(unauthorized);
     }
 
     @Test
-    public void test_create_absence_is_mapped_as_expected() {
+    public void test_create_absence_with_wrong_api_key_fails_as_expected() throws InterruptedException {
+        // given
+        String invalidApiToken = "1234567";
+
         // when
         ProcessInstanceEvent instance = client.newCreateInstanceCommand()
                 .bpmnProcessId("create-absence-process")
                 .latestVersion()
-                .variables(Map.of(
-                        "baseUrl", baseUrl,
-                        "apiKey", VALID_API_TOKEN,
-                        "employeeMocoId", 123456,
-                        "dateOfAbsence", "2024-01-01")
+                .variables(
+                        Map.of(
+                                "baseUrl", baseUrl,
+                                "apiKey", invalidApiToken,
+                                "employeeMocoId", 123456,
+                                "dateOfAbsence", "2024-01-01"
+                        )
                 )
                 .send()
                 .join();
 
-        waitForProcessInstanceCompleted(instance);
+        // wait for retries
+        Thread.sleep(1000);
 
         // then
-        assertThat(instance)
-                .hasVariableWithValue("scheduleId", 1234567890)
-                .isCompleted();
+        assertThat(instance).hasAnyIncidents();
     }
 
 }

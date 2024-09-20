@@ -1,0 +1,16 @@
+{
+  "id": 123,
+  "firstname": "Max",
+  "lastname": "Muster",
+  "active": false,
+  "extern": false,
+  "email": "max.muster@beispiel.de",
+  "mobile_phone": "+49 177 123 45 67",
+  "birthday": "1970-01-01",
+  "unit": {
+    "id": 456,
+    "name": "Abteilung"
+  },
+  "created_at": "2019-10-17T09:33:46Z",
+  "updated_at": "2024-10-17T09:33:46Z"
+}

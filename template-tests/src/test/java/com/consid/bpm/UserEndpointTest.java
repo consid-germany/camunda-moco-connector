@@ -27,7 +27,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @SpringBootTest
 @ZeebeSpringTest
-public class ScheduleEndpointTest {
+public class UserEndpointTest {
 
     public static final String VALID_API_TOKEN = "abcdef";
 
@@ -46,32 +46,44 @@ public class ScheduleEndpointTest {
         baseUrl = extension.baseUrl();
         WireMock wireMock = extension.getRuntimeInfo().getWireMock();
 
-        String requestJson = new ClassPathResource("request/create_absence.json")
+        String requestJson = new ClassPathResource("request/deactivate_user.json")
                 .getContentAsString(UTF_8);
 
-        String responseJson = new ClassPathResource("response/create_absence.json")
+        String responseJson = new ClassPathResource("response/deactivate_user.json")
                 .getContentAsString(UTF_8);
 
-        MappingBuilder happyPath = WireMock.post("/schedules")
+        MappingBuilder deactivateHappyPath = WireMock.put("/users/123")
                 .withHeader("Authorization", new EqualToPattern("Token token=" + VALID_API_TOKEN))
                 .withHeader("Content-Type", new EqualToPattern("application/json"))
                 .withRequestBody(new EqualToJsonPattern(requestJson, true, false))
                 .willReturn(okJson(responseJson));
 
-        wireMock.register(happyPath);
+        requestJson = new ClassPathResource("request/create_user.json")
+                .getContentAsString(UTF_8);
+
+        responseJson = new ClassPathResource("response/create_user.json")
+                .getContentAsString(UTF_8);
+
+        MappingBuilder createHappyPath = WireMock.post("/users")
+                .withHeader("Authorization", new EqualToPattern("Token token=" + VALID_API_TOKEN))
+                .withHeader("Content-Type", new EqualToPattern("application/json"))
+                .withRequestBody(new EqualToJsonPattern(requestJson, true, false))
+                .willReturn(okJson(responseJson));
+
+        wireMock.register(deactivateHappyPath);
+        wireMock.register(createHappyPath);
     }
 
     @Test
-    public void test_create_absence_is_mapped_as_expected() {
+    public void test_deactivate_user_is_mapped_as_expected() {
         // when
         ProcessInstanceEvent instance = client.newCreateInstanceCommand()
-                .bpmnProcessId("create-absence-process")
+                .bpmnProcessId("deactivate-user-process")
                 .latestVersion()
                 .variables(Map.of(
                         "baseUrl", baseUrl,
                         "apiKey", VALID_API_TOKEN,
-                        "employeeMocoId", 123456,
-                        "dateOfAbsence", "2024-01-01")
+                        "employeeMocoId", 123)
                 )
                 .send()
                 .join();
@@ -80,7 +92,33 @@ public class ScheduleEndpointTest {
 
         // then
         assertThat(instance)
-                .hasVariableWithValue("scheduleId", 1234567890)
+                .hasVariableWithValue("userId", 123)
+                .isCompleted();
+    }
+
+    @Test
+    public void test_create_user_is_mapped_as_expected() {
+        // when
+        ProcessInstanceEvent instance = client.newCreateInstanceCommand()
+                .bpmnProcessId("create-user-process")
+                .latestVersion()
+                .variables(Map.of(
+                                "baseUrl", baseUrl,
+                                "apiKey", VALID_API_TOKEN,
+                                "firstName", "Sarah",
+                                "lastName", "Parker",
+                                "mail", "sarah.parker@example.com",
+                                "teamId", 1
+                        )
+                )
+                .send()
+                .join();
+
+        waitForProcessInstanceCompleted(instance);
+
+        // then
+        assertThat(instance)
+                .hasVariableWithValue("userId", 123)
                 .isCompleted();
     }
 

@@ -1,0 +1,9 @@
+{
+  "firstname": "Sarah",
+  "lastname": "Parker",
+  "email": "sarah.parker@example.com",
+  "active": true,
+  "external": false,
+  "language": "de",
+  "unit_id": 1
+}

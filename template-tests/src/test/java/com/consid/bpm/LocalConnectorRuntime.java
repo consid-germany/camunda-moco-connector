@@ -6,7 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(exclude = {InboundConnectorsAutoConfiguration.class})
-@Deployment(resources = "bpmn/example.bpmn")
+@Deployment(resources = {
+        "bpmn/create-absence.bpmn",
+        "bpmn/deactivate-user.bpmn",
+        "bpmn/create-user.bpmn"
+})
 public class LocalConnectorRuntime {
 
     public static void main(String[] args) {
