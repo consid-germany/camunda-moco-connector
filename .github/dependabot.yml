@@ -23,3 +23,5 @@ updates:
       time: "06:00"
       timezone: Europe/Berlin
     open-pull-requests-limit: 99
+    ignore:
+      - dependency-name: "grpc-api"
