@@ -1,4 +1,4 @@
-# The Camunda Moco Connector
+# The Camunda MOCO Connector
 
 [![Maven Package](https://github.com/consid-germany/camunda-moco-connector/actions/workflows/maven-build.yml/badge.svg)](https://github.com/consid-germany/camunda-moco-connector/actions/workflows/maven-build.yml)
 
