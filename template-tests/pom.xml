@@ -12,15 +12,18 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.assertj>3.25.3</version.assertj>
-        <version.junit-jupiter>5.10.2</version.junit-jupiter>
-        <version.mockito>5.11.0</version.mockito>
-        <version.slf4j>2.0.12</version.slf4j>
-        <wiremock.version>3.9.1</wiremock.version>
-        <log4j-api.version>2.24.1</log4j-api.version>
-        <zeebe.version>8.5.7</zeebe.version>
-        <grpc-api.version>1.62.2</grpc-api.version>
+        <connectors.version>8.6.2</connectors.version>
+        <camunda-spring.version>8.5.11</camunda-spring.version>
         <spring-boot.version>3.3.4</spring-boot.version>
+        <grpc-api.version>1.68.0</grpc-api.version>
+        <log4j-api.version>2.24.0</log4j-api.version>
+        <slf4j.version>2.0.12</slf4j.version>
+        <zeebe-test.version>8.6.0</zeebe-test.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <mockito.version>5.11.0</mockito.version>
+        <assertj.version>3.25.3</assertj.version>
+        <wiremock.version>3.9.1</wiremock.version>
+        <maven-surefire-plugin.version>3.5.1</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -43,29 +46,43 @@
         <dependency>
             <groupId>io.camunda.connector</groupId>
             <artifactId>spring-boot-starter-camunda-connectors</artifactId>
-            <version>${zeebe.version}</version>
+            <version>${connectors.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>io.camunda.spring</groupId>
             <artifactId>spring-boot-starter-camunda-test</artifactId>
-            <version>${zeebe.version}</version>
+            <version>${camunda-spring.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- the camunda rest connector we want to use for testsing -->
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>zeebe-process-test-engine</artifactId>
+            <version>${zeebe-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>zeebe-process-test-api</artifactId>
+            <version>${zeebe-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- the camunda rest connector we want to use for testing -->
         <dependency>
             <groupId>io.camunda.connector</groupId>
             <artifactId>connector-http-json</artifactId>
-            <version>${zeebe.version}</version>
+            <version>${connectors.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${version.junit-jupiter}</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -88,7 +105,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <!-- This ensures System.out and System.err are captured -->
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
