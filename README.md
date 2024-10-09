@@ -50,7 +50,7 @@ I use the local Camunda stack together with Wiremock to test my template:
 
 ## 📬 Contact
 
-If you have any questions regarding this connector you can reach me at stefan.schultz (at) consid.com
+If you have any questions regarding this connector you can reach me at camunda-connector-support (at) consid.se
 
 ## 🔗 Links
 * API docs source: https://github.com/hundertzehn/mocoapp-api-docs/tree/master
